@@ -258,7 +258,9 @@ func (c *RPCServiceController) batchSync() {
 
 func parseServiceInfo(pod *api_v1.Pod) []registry.RPCService {
 	services := make([]registry.RPCService, 0)
-	json.Unmarshal([]byte(pod.ObjectMeta.Annotations[rpcService]), &services)
+	if err:=json.Unmarshal([]byte(pod.ObjectMeta.Annotations[rpcService]), &services); err !=nil{
+		log.Errorf("failed to parse service from  pod annotation: %v", err)
+	}
 	for i := range services {
 		services[i].Address = pod.Status.PodIP
 	}
