@@ -1,0 +1,55 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: test-service
+  labels:
+    app: test-service
+spec:
+  selector:
+    matchLabels:
+      app: test-service
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: test-service
+        rpc-service: "true"
+      annotations:
+        rpc-service: '[{"serviceName": "test-rpc-server-1", "version": "v0" }, { "serviceName": "test-rpc-server-2", "version": "v1"}]'
+    spec:
+      containers:
+        - name: simple-http-server
+          image: zhaohuabing/simple-http-server
+          env:
+            - name: PYTHONUNBUFFERED
+              value: "1"
+          ports:
+            - containerPort: 5000
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: another-test-service
+  labels:
+    app: another-test-service
+spec:
+  selector:
+    matchLabels:
+      app: another-test-service
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: another-test-service
+        rpc-service: "true"
+      annotations:
+        rpc-service: '[{"serviceName": "test-rpc-server-1", "version": "v1" }, { "serviceName": "test-rpc-server-2", "version": "v2"}]'
+    spec:
+      containers:
+        - name: simple-http-server
+          image: zhaohuabing/simple-http-server
+          env:
+            - name: PYTHONUNBUFFERED
+              value: "1"
+          ports:
+            - containerPort: 5000

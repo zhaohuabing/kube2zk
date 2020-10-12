@@ -1,0 +1,52 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: pod-reader
+rules:
+  - apiGroups: [""]
+    resources: ["pods"]
+    verbs: ["get", "watch", "list"]
+---
+
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: read-pods-global
+subjects:
+  - kind: ServiceAccount
+    name: default
+    namespace: default
+roleRef:
+  kind: ClusterRole
+  name: pod-reader
+  apiGroup: rbac.authorization.k8s.io
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kube2zk-controller
+  labels:
+    app: kube2zk-controller
+spec:
+  selector:
+    matchLabels:
+      app: kube2zk-controller
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: kube2zk-controller
+    spec:
+      containers:
+        - name: kube2zk-controller
+          image: zhaohuabing/kube2zk
+          imagePullPolicy: Always
+          env:
+            - name: namespace
+              value: ""
+            - name: zkservers
+              value: "zookeeper:2181"
+            - name: zkpath
+              value: "/rpc_v2"
+
