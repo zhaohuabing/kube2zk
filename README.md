@@ -1,4 +1,4 @@
-kube2zk 将 Pod 中的 RPC Service 注册到 zookeeper 中。
+kube2zk 将 Pod 中的自定义服务注册到 zookeeper 中。
 
 # 工作原理：
 
@@ -82,9 +82,9 @@ dataLength = 187
 numChildren = 0
 ```
 
-# RPC Service 定义
+# 服务定义
 
-* 使用 label rpc-service: "true" 表示该 Pod 中提供了 RPC Service
+* 使用 label rpc-service: "true" 表示该 Pod 中提供了自定义服务
 * 使用 annotation rpc-service 定义 RPC Service，一个 Pod 中可以定义一到多个 RPC Service
 
 举例说明
