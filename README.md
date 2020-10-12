@@ -23,13 +23,6 @@ Usage of ./out/kube2zk:
         zookeeper servers address (default "127.0.0.1:2181")
 ```
 
-## docker
-
-请将下面命令行中的 DOCKER_TAG 修改为你所需要的 tag
-```bash
-export DOCKER_TAG=zhaohuabing/kube2zk:latest; make docker-build
-```
-
 ## k8s
 
 ```bash

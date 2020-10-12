@@ -1,8 +1,8 @@
 package registry
 
 import (
-	"github.com/zhaohuabing/kube2zk/pkg/rpc"
 	log "github.com/sirupsen/logrus"
+	"github.com/zhaohuabing/kube2zk/pkg/rpc"
 )
 
 type ZKRegistry struct {

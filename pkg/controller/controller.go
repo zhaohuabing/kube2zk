@@ -10,9 +10,9 @@ import (
 
 	"k8s.io/apimachinery/pkg/labels"
 
+	log "github.com/sirupsen/logrus"
 	"github.com/zhaohuabing/kube2zk/pkg/registry"
 	"github.com/zhaohuabing/kube2zk/pkg/utils"
-	log "github.com/sirupsen/logrus"
 
 	api_v1 "k8s.io/api/core/v1"
 	meta_v1 "k8s.io/apimachinery/pkg/apis/meta/v1"

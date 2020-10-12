@@ -6,10 +6,10 @@ import (
 	"strings"
 	"time"
 
+	log "github.com/sirupsen/logrus"
 	"github.com/zhaohuabing/kube2zk/pkg/controller"
 	"github.com/zhaohuabing/kube2zk/pkg/registry"
 	"github.com/zhaohuabing/kube2zk/pkg/rpc"
-	log "github.com/sirupsen/logrus"
 
 	meta_v1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 )
