@@ -1,3 +1,5 @@
+kube2zk watches k8s pod and register the services defined in pod annotation to zoookeeper.
+
 kube2zk 将 Pod 中的自定义服务注册到 zookeeper 中。
 
 # 工作原理：
